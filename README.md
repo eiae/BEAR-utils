@@ -9,6 +9,6 @@ You will be able to create charts on:
 
 ---
 
-If you have any questions you can contact me at [erikignasi@gmail.com](erikignasi@gmail.com).
+If you have any questions you can contact me at [erikignasi@gmail.com](mailto:erikignasi@gmail.com).
 
 

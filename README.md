@@ -3,9 +3,9 @@ This is a repo with python routines to create charts in the context of **VAR ana
 
 You will be able to create charts on:
 
-- Impulse response functions (IRF)
-- Forecast error variance decompositions (FEVD)
-- Historical decompositions (HD)
+* Impulse response functions (IRF)
+* Forecast error variance decompositions (FEVD)
+* Historical decompositions (HD)
 
 ---
 

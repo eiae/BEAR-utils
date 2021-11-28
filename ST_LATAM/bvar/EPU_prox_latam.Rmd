@@ -1,0 +1,597 @@
+---
+title: "BVAR results"
+subtitle: "EPU proximity press paper"
+date: "(updated: `r Sys.Date()`)"
+output:
+  html_document:
+    theme: cerulean
+    highlight: tango
+    toc: yes
+    toc_float:
+      collapsed: true
+    toc_depth: 3
+    css: "styles.css"
+    includes:
+     in_header: "Header.Rhtml"
+      #after_body: footer.Rhtml
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+```
+
+```{r echo=FALSE,message = FALSE,warning=FALSE, comment=FALSE,include=FALSE}
+
+temp_wd <- "D:/AAA_Erik/PROJECTS/ST_LATAM/models"
+n <- 1
+
+```
+
+```{r echo = FALSE, eval = TRUE, essage = FALSE, warning = FALSE, comment = FALSE, include = FALSE}
+
+# dir.create("D:/AAA_Erik/PROJECTS/ST_LATAM/models")
+# dir.create("D:/AAA_Erik/PROJECTS/ST_LATAM/models")
+# dir.create(paste0("D:/AAA_Erik/PROJECTS/ST_LATAM/models",Sys.Date()))
+# 
+# setwd(temp_wd)
+# if(!exists('update_files')){
+#   update_files <- TRUE
+# }
+
+```
+
+# Overview
+
+This report shows the baseline and robustness results from the empirical exercise in the paper "Do local and foreign newspapers unveil the same economic policy uncertainty shocks?" by E. Andres-Escayola, C. Ghirelli, L. Molina, J.J. Perez, and E. Vidal. In particular, here we report the impulse response functions from the Bayesian VAR model. Please refer to the paper for specific details. 
+
+*Prepared by E. Andres-Escayola*
+
+
+### Table of contents
+
+:::: {style="display: flex;"}
+
+::: {style="width: 50%;"}
+
+
+**[Baseline results]**
+
+---
+
+- [Local press]
+- [Spanish press]
+- [International press]
+
+
+:::
+
+::: {style="width: 50%;"}
+
+**[Robustness results]**
+
+---
+
+- [One lag]
+- [Cholesky permutation]
+- [Monthly data]
+- [Additional financial variable]
+
+:::
+
+::::
+
+
+# Baseline results
+
+---
+
+###  Local press {.tabset}
+
+<p class="chart-title">
+Chart `r n`
+</p>
+
+---
+ 
+#### IRF Portfolio capital flows & GDP
+
+<p class="chart-units">
+(Percentage points)
+</p>
+
+
+```{r, echo = FALSE, out.width="50%"}
+knitr::include_graphics(paste0(temp_wd,"/bvar_LA/toolbox_4.2/results/benchmark_loc_press/plots_fanchart/IRF_LA_loc_epu_pcf_3_2.png"))
+knitr::include_graphics(paste0(temp_wd,"/bvar_LA/toolbox_4.2/results/benchmark_loc_press/plots_fanchart/IRF_LA_loc_epu_pcf_4_2.png"))
+
+```
+
+<p class="chart-notes">
+Source: Own estimations.
+</p>
+
+<p class="chart-notes">
+Note: The first chart corresponds to the response of the financial variable and the second to the response of GDP. Both responses are with respect to a 1 STD shock of the EPU. We report the median response with the corresponding 90%-10%, 84%-16%, 68%-32% credible sets for 15 periods.
+</p>
+
+
+#### IRF Exchange rate & GDP
+
+<p class="chart-units">
+(Percentage points)
+</p>
+
+
+```{r, echo = FALSE, out.width="50%"}
+knitr::include_graphics(paste0(temp_wd,"/bvar_LA/toolbox_4.2/results/benchmark_loc_press/plots_fanchart/IRF_LA_loc_epu_fx_3_2.png"))
+knitr::include_graphics(paste0(temp_wd,"/bvar_LA/toolbox_4.2/results/benchmark_loc_press/plots_fanchart/IRF_LA_loc_epu_fx_4_2.png"))
+```
+
+<p class="chart-notes">
+Source: Own estimations.
+</p>
+
+<p class="chart-notes">
+Note: The first chart corresponds to the response of the financial variable and the second to the response of GDP. Both responses are with respect to a 1 STD shock of the EPU. We report the median response with the corresponding 90%-10%, 84%-16%, 68%-32% credible sets for 15 periods.
+</p>
+
+
+#### IRF Equity & GDP
+
+<p class="chart-units">
+(Percentage points)
+</p>
+
+
+```{r, echo = FALSE, out.width="50%"}
+knitr::include_graphics(paste0(temp_wd,"/bvar_LA/toolbox_4.2/results/benchmark_loc_press/plots_fanchart/IRF_LA_loc_epu_equity_3_2.png"))
+knitr::include_graphics(paste0(temp_wd,"/bvar_LA/toolbox_4.2/results/benchmark_loc_press/plots_fanchart/IRF_LA_loc_epu_equity_4_2.png"))
+```
+
+<p class="chart-notes">
+Source: Own estimations.
+</p>
+
+<p class="chart-notes">
+Note: The first chart corresponds to the response of the financial variable and the second to the response of GDP. Both responses are with respect to a 1 STD shock of the EPU. We report the median response with the corresponding 90%-10%, 84%-16%, 68%-32% credible sets for 15 periods.
+</p>
+
+
+
+###  Spanish press {.tabset}
+
+<p class="chart-title">
+Chart `r n`
+</p>
+
+---
+ 
+#### IRF Portfolio capital flows & GDP
+
+<p class="chart-units">
+(Percentage points)
+</p>
+
+
+```{r, echo = FALSE, out.width="50%"}
+knitr::include_graphics(paste0(temp_wd,"/bvar_LA/toolbox_4.2/results/benchmark_esp_press/plots_fanchart/IRF_LA_esp_epu_pcf_3_2.png"))
+knitr::include_graphics(paste0(temp_wd,"/bvar_LA/toolbox_4.2/results/benchmark_esp_press/plots_fanchart/IRF_LA_esp_epu_pcf_4_2.png"))
+
+```
+
+<p class="chart-notes">
+Source: Own estimations.
+</p>
+
+<p class="chart-notes">
+Note: The first chart corresponds to the response of the financial variable and the second to the response of GDP. Both responses are with respect to a 1 STD shock of the EPU. We report the median response with the corresponding 90%-10%, 84%-16%, 68%-32% credible sets for 15 periods.
+</p>
+
+
+#### IRF Exchange rate & GDP
+
+<p class="chart-units">
+(Percentage points)
+</p>
+
+
+```{r, echo = FALSE, out.width="50%"}
+knitr::include_graphics(paste0(temp_wd,"/bvar_LA/toolbox_4.2/results/benchmark_esp_press/plots_fanchart/IRF_LA_esp_epu_fx_3_2.png"))
+knitr::include_graphics(paste0(temp_wd,"/bvar_LA/toolbox_4.2/results/benchmark_esp_press/plots_fanchart/IRF_LA_esp_epu_fx_4_2.png"))
+```
+
+<p class="chart-notes">
+Source: Own estimations.
+</p>
+
+<p class="chart-notes">
+Note: The first chart corresponds to the response of the financial variable and the second to the response of GDP. Both responses are with respect to a 1 STD shock of the EPU. We report the median response with the corresponding 90%-10%, 84%-16%, 68%-32% credible sets for 15 periods.
+</p>
+
+
+#### IRF Equity & GDP
+
+<p class="chart-units">
+(Percentage points)
+</p>
+
+
+```{r, echo = FALSE, out.width="50%"}
+knitr::include_graphics(paste0(temp_wd,"/bvar_LA/toolbox_4.2/results/benchmark_esp_press/plots_fanchart/IRF_LA_esp_epu_equity_3_2.png"))
+knitr::include_graphics(paste0(temp_wd,"/bvar_LA/toolbox_4.2/results/benchmark_esp_press/plots_fanchart/IRF_LA_esp_epu_equity_4_2.png"))
+```
+
+<p class="chart-notes">
+Source: Own estimations.
+</p>
+
+<p class="chart-notes">
+Note: The first chart corresponds to the response of the financial variable and the second to the response of GDP. Both responses are with respect to a 1 STD shock of the EPU. We report the median response with the corresponding 90%-10%, 84%-16%, 68%-32% credible sets for 15 periods.
+</p>
+
+
+
+###  International press {.tabset}
+
+<p class="chart-title">
+Chart `r n`
+</p>
+
+---
+ 
+#### IRF Portfolio capital flows & GDP
+
+<p class="chart-units">
+(Percentage points)
+</p>
+
+
+```{r, echo = FALSE, out.width="50%"}
+knitr::include_graphics(paste0(temp_wd,"/bvar_LA/toolbox_4.2/results/benchmark_int_press/plots_fanchart/IRF_LA_int_epu_pcf_3_2.png"))
+knitr::include_graphics(paste0(temp_wd,"/bvar_LA/toolbox_4.2/results/benchmark_int_press/plots_fanchart/IRF_LA_int_epu_pcf_4_2.png"))
+
+```
+
+<p class="chart-notes">
+Source: Own estimations.
+</p>
+
+<p class="chart-notes">
+Note: The first chart corresponds to the response of the financial variable and the second to the response of GDP. Both responses are with respect to a 1 STD shock of the EPU. We report the median response with the corresponding 90%-10%, 84%-16%, 68%-32% credible sets for 15 periods.
+</p>
+
+
+#### IRF Exchange rate & GDP
+
+<p class="chart-units">
+(Percentage points)
+</p>
+
+
+```{r, echo = FALSE, out.width="50%"}
+knitr::include_graphics(paste0(temp_wd,"/bvar_LA/toolbox_4.2/results/benchmark_int_press/plots_fanchart/IRF_LA_int_epu_fx_3_2.png"))
+knitr::include_graphics(paste0(temp_wd,"/bvar_LA/toolbox_4.2/results/benchmark_int_press/plots_fanchart/IRF_LA_int_epu_fx_4_2.png"))
+```
+
+<p class="chart-notes">
+Source: Own estimations.
+</p>
+
+<p class="chart-notes">
+Note: The first chart corresponds to the response of the financial variable and the second to the response of GDP. Both responses are with respect to a 1 STD shock of the EPU. We report the median response with the corresponding 90%-10%, 84%-16%, 68%-32% credible sets for 15 periods.
+</p>
+
+
+#### IRF Equity & GDP
+
+<p class="chart-units">
+(Percentage points)
+</p>
+
+
+```{r, echo = FALSE, out.width="50%"}
+knitr::include_graphics(paste0(temp_wd,"/bvar_LA/toolbox_4.2/results/benchmark_int_press/plots_fanchart/IRF_LA_int_epu_equity_3_2.png"))
+knitr::include_graphics(paste0(temp_wd,"/bvar_LA/toolbox_4.2/results/benchmark_int_press/plots_fanchart/IRF_LA_int_epu_equity_4_2.png"))
+```
+
+<p class="chart-notes">
+Source: Own estimations.
+</p>
+
+<p class="chart-notes">
+Note: The first chart corresponds to the response of the financial variable and the second to the response of GDP. Both responses are with respect to a 1 STD shock of the EPU. We report the median response with the corresponding 90%-10%, 84%-16%, 68%-32% credible sets for 15 periods.
+</p>
+
+
+
+```{r echo=FALSE,message = FALSE,warning=FALSE, comment=FALSE}
+n<-n+1
+```
+
+
+# Robustness results
+
+---
+
+###  One lag {.tabset}
+
+<p class="chart-title">
+Chart `r n`
+</p>
+
+---
+
+#### IRF Portfolio capital flows & GDP
+
+<p class="chart-units">
+(Percentage points)
+</p>
+
+
+```{r, echo = FALSE, out.width="50%"}
+# knitr::include_graphics(paste0(temp_wd,"/bvar_LA/toolbox_4.2/results/benchmark_int_press/plots_fanchart/IRF_LA_int_epu_pcf_3_2.png"))
+# knitr::include_graphics(paste0(temp_wd,"/bvar_LA/toolbox_4.2/results/benchmark_int_press/plots_fanchart/IRF_LA_int_epu_pcf_4_2.png"))
+
+```
+
+<p class="chart-notes">
+Source: Own estimations.
+</p>
+
+<p class="chart-notes">
+Note: The first chart corresponds to the response of the financial variable and the second to the response of GDP. Both responses are with respect to a 1 STD shock of the EPU. We report the median response with the corresponding 84%-16% credible set for 15 periods (filled triangles represent significant estimates). 
+</p>
+
+
+#### IRF Exchange rate & GDP
+
+<p class="chart-units">
+(Percentage points)
+</p>
+
+
+```{r, echo = FALSE, out.width="50%"}
+# knitr::include_graphics(paste0(temp_wd,"/bvar_LA/toolbox_4.2/results/benchmark_int_press/plots_fanchart/IRF_LA_int_epu_fx_3_2.png"))
+# knitr::include_graphics(paste0(temp_wd,"/bvar_LA/toolbox_4.2/results/benchmark_int_press/plots_fanchart/IRF_LA_int_epu_fx_4_2.png"))
+
+```
+
+<p class="chart-notes">
+Source: Own estimations.
+</p>
+
+<p class="chart-notes">
+Note: The first chart corresponds to the response of the financial variable and the second to the response of GDP. Both responses are with respect to a 1 STD shock of the EPU. We report the median response with the corresponding 84%-16% credible set for 15 periods (filled triangles represent significant estimates). 
+</p>
+
+
+#### IRF Equity & GDP
+
+<p class="chart-units">
+(Percentage points)
+</p>
+
+
+```{r, echo = FALSE, out.width="50%"}
+# knitr::include_graphics(paste0(temp_wd,"/bvar_LA/toolbox_4.2/results/benchmark_int_press/plots_fanchart/IRF_LA_int_epu_equity_3_2.png"))
+# knitr::include_graphics(paste0(temp_wd,"/bvar_LA/toolbox_4.2/results/benchmark_int_press/plots_fanchart/IRF_LA_int_epu_equity_4_2.png"))
+
+```
+
+<p class="chart-notes">
+Source: Own estimations.
+</p>
+
+<p class="chart-notes">
+Note: The first chart corresponds to the response of the financial variable and the second to the response of GDP. Both responses are with respect to a 1 STD shock of the EPU. We report the median response with the corresponding 84%-16% credible set for 15 periods (filled triangles represent significant estimates). 
+</p>
+
+
+
+###  Cholesky permutation {.tabset}
+
+<p class="chart-title">
+Chart `r n`
+</p>
+
+---
+
+#### IRF Portfolio capital flows & GDP
+
+<p class="chart-units">
+(Percentage points)
+</p>
+
+
+```{r, echo = FALSE, out.width="50%"}
+# knitr::include_graphics(paste0(temp_wd,"/bvar_LA/toolbox_4.2/results/benchmark_int_press/plots_fanchart/IRF_LA_int_epu_pcf_3_2.png"))
+# knitr::include_graphics(paste0(temp_wd,"/bvar_LA/toolbox_4.2/results/benchmark_int_press/plots_fanchart/IRF_LA_int_epu_pcf_4_2.png"))
+
+```
+
+<p class="chart-notes">
+Source: Own estimations.
+</p>
+
+<p class="chart-notes">
+Note: The first chart corresponds to the response of the financial variable and the second to the response of GDP. Both responses are with respect to a 1 STD shock of the EPU. We report the median response with the corresponding 84%-16% credible set for 15 periods (filled triangles represent significant estimates). 
+</p>
+
+
+#### IRF Exchange rate & GDP
+
+<p class="chart-units">
+(Percentage points)
+</p>
+
+
+```{r, echo = FALSE, out.width="50%"}
+# knitr::include_graphics(paste0(temp_wd,"/bvar_LA/toolbox_4.2/results/benchmark_int_press/plots_fanchart/IRF_LA_int_epu_fx_3_2.png"))
+# knitr::include_graphics(paste0(temp_wd,"/bvar_LA/toolbox_4.2/results/benchmark_int_press/plots_fanchart/IRF_LA_int_epu_fx_4_2.png"))
+
+```
+
+<p class="chart-notes">
+Source: Own estimations.
+</p>
+
+<p class="chart-notes">
+Note: The first chart corresponds to the response of the financial variable and the second to the response of GDP. Both responses are with respect to a 1 STD shock of the EPU. We report the median response with the corresponding 84%-16% credible set for 15 periods (filled triangles represent significant estimates). 
+</p>
+
+
+#### IRF Equity & GDP
+
+<p class="chart-units">
+(Percentage points)
+</p>
+
+
+```{r, echo = FALSE, out.width="50%"}
+# knitr::include_graphics(paste0(temp_wd,"/bvar_LA/toolbox_4.2/results/benchmark_int_press/plots_fanchart/IRF_LA_int_epu_equity_3_2.png"))
+# knitr::include_graphics(paste0(temp_wd,"/bvar_LA/toolbox_4.2/results/benchmark_int_press/plots_fanchart/IRF_LA_int_epu_equity_4_2.png"))
+
+```
+
+<p class="chart-notes">
+Source: Own estimations.
+</p>
+
+<p class="chart-notes">
+Note: The first chart corresponds to the response of the financial variable and the second to the response of GDP. Both responses are with respect to a 1 STD shock of the EPU. We report the median response with the corresponding 84%-16% credible set for 15 periods (filled triangles represent significant estimates). 
+</p>
+
+
+
+###  Monthly data {.tabset}
+
+<p class="chart-title">
+Chart `r n`
+</p>
+
+---
+
+#### IRF Portfolio capital flows & GDP
+
+<p class="chart-units">
+(Percentage points)
+</p>
+
+
+```{r, echo = FALSE, out.width="50%"}
+# knitr::include_graphics(paste0(temp_wd,"/bvar_LA/toolbox_4.2/results/benchmark_int_press/plots_fanchart/IRF_LA_int_epu_pcf_3_2.png"))
+# knitr::include_graphics(paste0(temp_wd,"/bvar_LA/toolbox_4.2/results/benchmark_int_press/plots_fanchart/IRF_LA_int_epu_pcf_4_2.png"))
+
+```
+
+<p class="chart-notes">
+Source: Own estimations.
+</p>
+
+<p class="chart-notes">
+Note: The first chart corresponds to the response of the financial variable and the second to the response of GDP. Both responses are with respect to a 1 STD shock of the EPU. We report the median response with the corresponding 84%-16% credible set for 15 periods (filled triangles represent significant estimates). 
+</p>
+
+
+#### IRF Exchange rate & GDP
+
+<p class="chart-units">
+(Percentage points)
+</p>
+
+
+```{r, echo = FALSE, out.width="50%"}
+# knitr::include_graphics(paste0(temp_wd,"/bvar_LA/toolbox_4.2/results/benchmark_int_press/plots_fanchart/IRF_LA_int_epu_fx_3_2.png"))
+# knitr::include_graphics(paste0(temp_wd,"/bvar_LA/toolbox_4.2/results/benchmark_int_press/plots_fanchart/IRF_LA_int_epu_fx_4_2.png"))
+
+```
+
+<p class="chart-notes">
+Source: Own estimations.
+</p>
+
+<p class="chart-notes">
+Note: The first chart corresponds to the response of the financial variable and the second to the response of GDP. Both responses are with respect to a 1 STD shock of the EPU. We report the median response with the corresponding 84%-16% credible set for 15 periods (filled triangles represent significant estimates). 
+</p>
+
+
+#### IRF Equity & GDP
+
+<p class="chart-units">
+(Percentage points)
+</p>
+
+
+```{r, echo = FALSE, out.width="50%"}
+# knitr::include_graphics(paste0(temp_wd,"/bvar_LA/toolbox_4.2/results/benchmark_int_press/plots_fanchart/IRF_LA_int_epu_equity_3_2.png"))
+# knitr::include_graphics(paste0(temp_wd,"/bvar_LA/toolbox_4.2/results/benchmark_int_press/plots_fanchart/IRF_LA_int_epu_equity_4_2.png"))
+
+```
+
+<p class="chart-notes">
+Source: Own estimations.
+</p>
+
+<p class="chart-notes">
+Note: The first chart corresponds to the response of the financial variable and the second to the response of GDP. Both responses are with respect to a 1 STD shock of the EPU. We report the median response with the corresponding 84%-16% credible set for 15 periods (filled triangles represent significant estimates). 
+</p>
+
+
+
+###  Additional financial variable {.tabset}
+
+<p class="chart-title">
+Chart `r n`
+</p>
+
+---
+
+#### IRF Residential portfolio capital flows & GDP
+
+<p class="chart-units">
+(Percentage points)
+</p>
+
+
+```{r, echo = FALSE, out.width="50%"}
+# knitr::include_graphics(paste0(temp_wd,"/bvar_LA/toolbox_4.2/results/benchmark_int_press/plots_fanchart/IRF_LA_int_epu_pcf_3_2.png"))
+# knitr::include_graphics(paste0(temp_wd,"/bvar_LA/toolbox_4.2/results/benchmark_int_press/plots_fanchart/IRF_LA_int_epu_pcf_4_2.png"))
+
+```
+
+<p class="chart-notes">
+Source: Own estimations.
+</p>
+
+<p class="chart-notes">
+Note: The first chart corresponds to the response of the financial variable and the second to the response of GDP. Both responses are with respect to a 1 STD shock of the EPU. We report the median response with the corresponding 84%-16% credible set for 15 periods (filled triangles represent significant estimates). 
+</p>
+
+
+#### IRF EMBI & GDP
+
+<p class="chart-units">
+(Percentage points)
+</p>
+
+
+```{r, echo = FALSE, out.width="50%"}
+# knitr::include_graphics(paste0(temp_wd,"/bvar_LA/toolbox_4.2/results/benchmark_int_press/plots_fanchart/IRF_LA_int_epu_fx_3_2.png"))
+# knitr::include_graphics(paste0(temp_wd,"/bvar_LA/toolbox_4.2/results/benchmark_int_press/plots_fanchart/IRF_LA_int_epu_fx_4_2.png"))
+
+```
+
+<p class="chart-notes">
+Source: Own estimations.
+</p>
+
+<p class="chart-notes">
+Note: The first chart corresponds to the response of the financial variable and the second to the response of GDP. Both responses are with respect to a 1 STD shock of the EPU. We report the median response with the corresponding 84%-16% credible set for 15 periods (filled triangles represent significant estimates). 
+</p>
+
+
+
+```{r echo=FALSE,message = FALSE,warning=FALSE, comment=FALSE}
+n<-n+1
+```

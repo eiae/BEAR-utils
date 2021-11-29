@@ -59,6 +59,7 @@ This report shows the baseline and robustness results from the empirical exercis
 
 ---
 
+- [Press comparison]
 - [Local press]
 - [Spanish press]
 - [International press]
@@ -85,6 +86,80 @@ This report shows the baseline and robustness results from the empirical exercis
 # Baseline results
 
 ---
+
+###  Press comparison {.tabset}
+
+<p class="chart-title">
+Chart `r n`
+</p>
+
+---
+ 
+#### IRF Portfolio capital flows & GDP
+
+<p class="chart-units">
+(Percentage points)
+</p>
+
+
+```{r, echo = FALSE, out.width="50%"}
+knitr::include_graphics(paste0(temp_wd,"/bvar_LA/toolbox_4.2/results/benchmark_additional/irf_benchmark_pcf.png"))
+knitr::include_graphics(paste0(temp_wd,"/bvar_LA/toolbox_4.2/results/benchmark_additional/irf_benchmark_pcfgdp.png"))
+
+```
+
+<p class="chart-notes">
+Source: Own estimations.
+</p>
+
+<p class="chart-notes">
+Note: The first chart corresponds to the response of the financial variable and the second to the response of GDP. Both responses are with respect to a 1 STD shock of the EPU. We report the median response with the corresponding 84%-16% credible set for 15 periods (filled triangles represent significant estimates). 
+</p>
+
+
+#### IRF Exchange rate & GDP
+
+<p class="chart-units">
+(Percentage points)
+</p>
+
+
+```{r, echo = FALSE, out.width="50%"}
+knitr::include_graphics(paste0(temp_wd,"/bvar_LA/toolbox_4.2/results/benchmark_additional/irf_benchmark_fx.png"))
+knitr::include_graphics(paste0(temp_wd,"/bvar_LA/toolbox_4.2/results/benchmark_additional/irf_benchmark_fxgdp.png"))
+
+```
+
+<p class="chart-notes">
+Source: Own estimations.
+</p>
+
+<p class="chart-notes">
+Note: The first chart corresponds to the response of the financial variable and the second to the response of GDP. Both responses are with respect to a 1 STD shock of the EPU. We report the median response with the corresponding 84%-16% credible set for 15 periods (filled triangles represent significant estimates). 
+</p>
+
+
+#### IRF Equity & GDP
+
+<p class="chart-units">
+(Percentage points)
+</p>
+
+
+```{r, echo = FALSE, out.width="50%"}
+knitr::include_graphics(paste0(temp_wd,"/bvar_LA/toolbox_4.2/results/benchmark_additional/irf_benchmark_equity.png"))
+knitr::include_graphics(paste0(temp_wd,"/bvar_LA/toolbox_4.2/results/benchmark_additional/irf_benchmark_equitygdp.png"))
+
+```
+
+<p class="chart-notes">
+Source: Own estimations.
+</p>
+
+<p class="chart-notes">
+Note: The first chart corresponds to the response of the financial variable and the second to the response of GDP. Both responses are with respect to a 1 STD shock of the EPU. We report the median response with the corresponding 84%-16% credible set for 15 periods (filled triangles represent significant estimates). 
+</p>
+
 
 ###  Local press {.tabset}
 
@@ -330,8 +405,8 @@ Chart `r n`
 
 
 ```{r, echo = FALSE, out.width="50%"}
-# knitr::include_graphics(paste0(temp_wd,"/bvar_LA/toolbox_4.2/results/benchmark_int_press/plots_fanchart/IRF_LA_int_epu_pcf_3_2.png"))
-# knitr::include_graphics(paste0(temp_wd,"/bvar_LA/toolbox_4.2/results/benchmark_int_press/plots_fanchart/IRF_LA_int_epu_pcf_4_2.png"))
+knitr::include_graphics(paste0(temp_wd,"/bvar_LA/toolbox_4.2/results/benchmark_additional/irf_roblag1_pcf.png"))
+knitr::include_graphics(paste0(temp_wd,"/bvar_LA/toolbox_4.2/results/benchmark_additional/irf_roblag1_pcfgdp.png"))
 
 ```
 
@@ -352,8 +427,8 @@ Note: The first chart corresponds to the response of the financial variable and 
 
 
 ```{r, echo = FALSE, out.width="50%"}
-# knitr::include_graphics(paste0(temp_wd,"/bvar_LA/toolbox_4.2/results/benchmark_int_press/plots_fanchart/IRF_LA_int_epu_fx_3_2.png"))
-# knitr::include_graphics(paste0(temp_wd,"/bvar_LA/toolbox_4.2/results/benchmark_int_press/plots_fanchart/IRF_LA_int_epu_fx_4_2.png"))
+knitr::include_graphics(paste0(temp_wd,"/bvar_LA/toolbox_4.2/results/benchmark_additional/irf_roblag1_fx.png"))
+knitr::include_graphics(paste0(temp_wd,"/bvar_LA/toolbox_4.2/results/benchmark_additional/irf_roblag1_fxgdp.png"))
 
 ```
 
@@ -374,8 +449,8 @@ Note: The first chart corresponds to the response of the financial variable and 
 
 
 ```{r, echo = FALSE, out.width="50%"}
-# knitr::include_graphics(paste0(temp_wd,"/bvar_LA/toolbox_4.2/results/benchmark_int_press/plots_fanchart/IRF_LA_int_epu_equity_3_2.png"))
-# knitr::include_graphics(paste0(temp_wd,"/bvar_LA/toolbox_4.2/results/benchmark_int_press/plots_fanchart/IRF_LA_int_epu_equity_4_2.png"))
+knitr::include_graphics(paste0(temp_wd,"/bvar_LA/toolbox_4.2/results/benchmark_additional/irf_roblag1_equity.png"))
+knitr::include_graphics(paste0(temp_wd,"/bvar_LA/toolbox_4.2/results/benchmark_additional/irf_roblag1_equitygdp.png"))
 
 ```
 
@@ -405,8 +480,8 @@ Chart `r n`
 
 
 ```{r, echo = FALSE, out.width="50%"}
-# knitr::include_graphics(paste0(temp_wd,"/bvar_LA/toolbox_4.2/results/benchmark_int_press/plots_fanchart/IRF_LA_int_epu_pcf_3_2.png"))
-# knitr::include_graphics(paste0(temp_wd,"/bvar_LA/toolbox_4.2/results/benchmark_int_press/plots_fanchart/IRF_LA_int_epu_pcf_4_2.png"))
+knitr::include_graphics(paste0(temp_wd,"/bvar_LA/toolbox_4.2/results/benchmark_additional/irf_robpermu_pcf.png"))
+knitr::include_graphics(paste0(temp_wd,"/bvar_LA/toolbox_4.2/results/benchmark_additional/irf_robpermu_pcfgdp.png"))
 
 ```
 
@@ -427,8 +502,8 @@ Note: The first chart corresponds to the response of the financial variable and 
 
 
 ```{r, echo = FALSE, out.width="50%"}
-# knitr::include_graphics(paste0(temp_wd,"/bvar_LA/toolbox_4.2/results/benchmark_int_press/plots_fanchart/IRF_LA_int_epu_fx_3_2.png"))
-# knitr::include_graphics(paste0(temp_wd,"/bvar_LA/toolbox_4.2/results/benchmark_int_press/plots_fanchart/IRF_LA_int_epu_fx_4_2.png"))
+knitr::include_graphics(paste0(temp_wd,"/bvar_LA/toolbox_4.2/results/benchmark_additional/irf_robpermu_fx.png"))
+knitr::include_graphics(paste0(temp_wd,"/bvar_LA/toolbox_4.2/results/benchmark_additional/irf_robpermu_fxgdp.png"))
 
 ```
 
@@ -449,8 +524,8 @@ Note: The first chart corresponds to the response of the financial variable and 
 
 
 ```{r, echo = FALSE, out.width="50%"}
-# knitr::include_graphics(paste0(temp_wd,"/bvar_LA/toolbox_4.2/results/benchmark_int_press/plots_fanchart/IRF_LA_int_epu_equity_3_2.png"))
-# knitr::include_graphics(paste0(temp_wd,"/bvar_LA/toolbox_4.2/results/benchmark_int_press/plots_fanchart/IRF_LA_int_epu_equity_4_2.png"))
+knitr::include_graphics(paste0(temp_wd,"/bvar_LA/toolbox_4.2/results/benchmark_additional/irf_robpermu_equity.png"))
+knitr::include_graphics(paste0(temp_wd,"/bvar_LA/toolbox_4.2/results/benchmark_additional/irf_robpermu_equitygdp.png"))
 
 ```
 
@@ -480,8 +555,8 @@ Chart `r n`
 
 
 ```{r, echo = FALSE, out.width="50%"}
-# knitr::include_graphics(paste0(temp_wd,"/bvar_LA/toolbox_4.2/results/benchmark_int_press/plots_fanchart/IRF_LA_int_epu_pcf_3_2.png"))
-# knitr::include_graphics(paste0(temp_wd,"/bvar_LA/toolbox_4.2/results/benchmark_int_press/plots_fanchart/IRF_LA_int_epu_pcf_4_2.png"))
+knitr::include_graphics(paste0(temp_wd,"/bvar_LA/toolbox_4.2/results/benchmark_additional/irf_robmonthly6_pcf.png"))
+knitr::include_graphics(paste0(temp_wd,"/bvar_LA/toolbox_4.2/results/benchmark_additional/irf_robmonthly6_pcfgdp.png"))
 
 ```
 
@@ -502,8 +577,8 @@ Note: The first chart corresponds to the response of the financial variable and 
 
 
 ```{r, echo = FALSE, out.width="50%"}
-# knitr::include_graphics(paste0(temp_wd,"/bvar_LA/toolbox_4.2/results/benchmark_int_press/plots_fanchart/IRF_LA_int_epu_fx_3_2.png"))
-# knitr::include_graphics(paste0(temp_wd,"/bvar_LA/toolbox_4.2/results/benchmark_int_press/plots_fanchart/IRF_LA_int_epu_fx_4_2.png"))
+knitr::include_graphics(paste0(temp_wd,"/bvar_LA/toolbox_4.2/results/benchmark_additional/irf_robmonthly6_fx.png"))
+knitr::include_graphics(paste0(temp_wd,"/bvar_LA/toolbox_4.2/results/benchmark_additional/irf_robmonthly6_fxgdp.png"))
 
 ```
 
@@ -524,8 +599,8 @@ Note: The first chart corresponds to the response of the financial variable and 
 
 
 ```{r, echo = FALSE, out.width="50%"}
-# knitr::include_graphics(paste0(temp_wd,"/bvar_LA/toolbox_4.2/results/benchmark_int_press/plots_fanchart/IRF_LA_int_epu_equity_3_2.png"))
-# knitr::include_graphics(paste0(temp_wd,"/bvar_LA/toolbox_4.2/results/benchmark_int_press/plots_fanchart/IRF_LA_int_epu_equity_4_2.png"))
+knitr::include_graphics(paste0(temp_wd,"/bvar_LA/toolbox_4.2/results/benchmark_additional/irf_robmonthly6_equity.png"))
+knitr::include_graphics(paste0(temp_wd,"/bvar_LA/toolbox_4.2/results/benchmark_additional/irf_robmonthly6_equitygdp.png"))
 
 ```
 
@@ -555,8 +630,8 @@ Chart `r n`
 
 
 ```{r, echo = FALSE, out.width="50%"}
-# knitr::include_graphics(paste0(temp_wd,"/bvar_LA/toolbox_4.2/results/benchmark_int_press/plots_fanchart/IRF_LA_int_epu_pcf_3_2.png"))
-# knitr::include_graphics(paste0(temp_wd,"/bvar_LA/toolbox_4.2/results/benchmark_int_press/plots_fanchart/IRF_LA_int_epu_pcf_4_2.png"))
+knitr::include_graphics(paste0(temp_wd,"/bvar_LA/toolbox_4.2/results/benchmark_additional/irf_robpcfres_pcfres.png"))
+knitr::include_graphics(paste0(temp_wd,"/bvar_LA/toolbox_4.2/results/benchmark_additional/irf_robpcfres_pcfresgdp.png"))
 
 ```
 
@@ -577,8 +652,8 @@ Note: The first chart corresponds to the response of the financial variable and 
 
 
 ```{r, echo = FALSE, out.width="50%"}
-# knitr::include_graphics(paste0(temp_wd,"/bvar_LA/toolbox_4.2/results/benchmark_int_press/plots_fanchart/IRF_LA_int_epu_fx_3_2.png"))
-# knitr::include_graphics(paste0(temp_wd,"/bvar_LA/toolbox_4.2/results/benchmark_int_press/plots_fanchart/IRF_LA_int_epu_fx_4_2.png"))
+knitr::include_graphics(paste0(temp_wd,"/bvar_LA/toolbox_4.2/results/benchmark_additional/irf_robembi_embi.png"))
+knitr::include_graphics(paste0(temp_wd,"/bvar_LA/toolbox_4.2/results/benchmark_additional/irf_robembi_embigdp.png"))
 
 ```
 

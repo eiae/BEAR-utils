@@ -110,32 +110,32 @@ for j in range(len(tension)):
         for row in range(v):
             for col in range(v):
                 # IRF
-                horizon = np.arange(1, 41, dtype=float)
-                bar_l_0 = [q+1 for q in range(0,40)]
-                # tick_pos_0 = [q+1 for q in range(0,40)]
+                horizon = np.arange(1, 16, dtype=float)
+                bar_l_0 = [q+1 for q in range(0,15)]
+                tick_pos_0 = [q+1 for q in range(0,15)]
                 fig, ax = plt.subplots(1, figsize=(15, 7))
-#                ax.plot(bar_l_0, output["output_"+res[0]]["output_"+res[0]+"_"+press[0]][res[0]+"_"+tension[j]+"_"+finance[h]+"_"+str(row+1)+"_"+str(col+1)]["median"], color=colours[0], linewidth=2, alpha=0.8, label="median")
-#                ax.plot(bar_l_0, output["output_"+res[0]]["output_"+res[0]+"_"+press[0]][res[0]+"_"+tension[j]+"_"+finance[h]+"_"+str(row+1)+"_"+str(col+1)]["lw. bound"], color=colours[0], linewidth=1, linestyle=(0, (5, 1)), alpha=0.6, label="16% credible set")
-#                ax.plot(bar_l_0, output["output_"+res[0]]["output_"+res[0]+"_"+press[0]][res[0]+"_"+tension[j]+"_"+finance[h]+"_"+str(row+1)+"_"+str(col+1)]["up. bound"], color=colours[0], linewidth=1, linestyle=(0, (5, 1)), alpha=0.6, label="84% credible set")
-#                ax.fill_between(horizon, np.asarray(output["output_"+res[0]]["output_"+res[0]+"_"+press[0]][res[0]+"_"+tension[j]+"_"+finance[h]+"_"+str(row+1)+"_"+str(col+1)]["lw. bound"], dtype=float), np.asarray(output["output_"+res[0]]["output_"+res[0]+"_"+press[0]][res[0]+"_"+tension[j]+"_"+finance[h]+"_"+str(row+1)+"_"+str(col+1)]["up. bound"], dtype=float), color=colours[0], alpha=0.2)
-                ax.plot(bar_l_0, output["output_"+res[0]]["output_"+res[0]+"_"+press[1]][res[0]+"_"+tension[j]+"_"+finance[h]+"_"+str(row+1)+"_"+str(col+1)]["median"], color=colours[1], linewidth=2, alpha=0.8, label="median")
-                ax.plot(bar_l_0, output["output_"+res[0]]["output_"+res[0]+"_"+press[1]][res[0]+"_"+tension[j]+"_"+finance[h]+"_"+str(row+1)+"_"+str(col+1)]["lw. bound"], color=colours[1], linewidth=1, linestyle=(0, (5, 1)), alpha=0.6, label="16% credible set")
-                ax.plot(bar_l_0, output["output_"+res[0]]["output_"+res[0]+"_"+press[1]][res[0]+"_"+tension[j]+"_"+finance[h]+"_"+str(row+1)+"_"+str(col+1)]["up. bound"], color=colours[1], linewidth=1, linestyle=(0, (5, 1)), alpha=0.6, label="84% credible set")
-                ax.fill_between(horizon, np.asarray(output["output_"+res[0]]["output_"+res[0]+"_"+press[1]][res[0]+"_"+tension[j]+"_"+finance[h]+"_"+str(row+1)+"_"+str(col+1)]["lw. bound"], dtype=float), np.asarray(output["output_"+res[0]]["output_"+res[0]+"_"+press[1]][res[0]+"_"+tension[j]+"_"+finance[h]+"_"+str(row+1)+"_"+str(col+1)]["up. bound"], dtype=float), color=colours[1], alpha=0.2)
-                ax.plot(bar_l_0, output["output_"+res[0]]["output_"+res[0]+"_"+press[2]][res[0]+"_"+tension[j]+"_"+finance[h]+"_"+str(row+1)+"_"+str(col+1)]["median"], color=colours[2], linewidth=2, alpha=0.8, label="median")
-                ax.plot(bar_l_0, output["output_"+res[0]]["output_"+res[0]+"_"+press[2]][res[0]+"_"+tension[j]+"_"+finance[h]+"_"+str(row+1)+"_"+str(col+1)]["lw. bound"], color=colours[2], linewidth=1, linestyle=(0, (5, 1)), alpha=0.6, label="16% credible set")
-                ax.plot(bar_l_0, output["output_"+res[0]]["output_"+res[0]+"_"+press[2]][res[0]+"_"+tension[j]+"_"+finance[h]+"_"+str(row+1)+"_"+str(col+1)]["up. bound"], color=colours[2], linewidth=1, linestyle=(0, (5, 1)), alpha=0.6, label="84% credible set")
-                ax.fill_between(horizon, np.asarray(output["output_"+res[0]]["output_"+res[0]+"_"+press[2]][res[0]+"_"+tension[j]+"_"+finance[h]+"_"+str(row+1)+"_"+str(col+1)]["lw. bound"], dtype=float), np.asarray(output["output_"+res[0]]["output_"+res[0]+"_"+press[2]][res[0]+"_"+tension[j]+"_"+finance[h]+"_"+str(row+1)+"_"+str(col+1)]["up. bound"], dtype=float), color=colours[2], alpha=0.2)                                  
+#                ax.plot(bar_l_0, output["output_"+res[0]]["output_"+res[0]+"_"+press[0]][res[0]+"_"+tension[j]+"_"+finance[h]+"_"+str(row+1)+"_"+str(col+1)]["median"][0:15], color=colours[0], linewidth=2, alpha=0.8, label="median")
+#                ax.plot(bar_l_0, output["output_"+res[0]]["output_"+res[0]+"_"+press[0]][res[0]+"_"+tension[j]+"_"+finance[h]+"_"+str(row+1)+"_"+str(col+1)]["lw. bound"][0:15], color=colours[0], linewidth=1, linestyle=(0, (5, 1)), alpha=0.6, label="16% credible set")
+#                ax.plot(bar_l_0, output["output_"+res[0]]["output_"+res[0]+"_"+press[0]][res[0]+"_"+tension[j]+"_"+finance[h]+"_"+str(row+1)+"_"+str(col+1)]["up. bound"][0:15], color=colours[0], linewidth=1, linestyle=(0, (5, 1)), alpha=0.6, label="84% credible set")
+#                ax.fill_between(horizon, np.asarray(output["output_"+res[0]]["output_"+res[0]+"_"+press[0]][res[0]+"_"+tension[j]+"_"+finance[h]+"_"+str(row+1)+"_"+str(col+1)]["lw. bound"][0:15], dtype=float), np.asarray(output["output_"+res[0]]["output_"+res[0]+"_"+press[0]][res[0]+"_"+tension[j]+"_"+finance[h]+"_"+str(row+1)+"_"+str(col+1)]["up. bound"][0:15], dtype=float), color=colours[0], alpha=0.2)
+                ax.plot(bar_l_0, output["output_"+res[0]]["output_"+res[0]+"_"+press[1]][res[0]+"_"+tension[j]+"_"+finance[h]+"_"+str(row+1)+"_"+str(col+1)]["median"][0:15], color=colours[1], linewidth=2, alpha=0.8, label="median")
+                ax.plot(bar_l_0, output["output_"+res[0]]["output_"+res[0]+"_"+press[1]][res[0]+"_"+tension[j]+"_"+finance[h]+"_"+str(row+1)+"_"+str(col+1)]["lw. bound"][0:15], color=colours[1], linewidth=1, linestyle=(0, (5, 1)), alpha=0.6, label="16% credible set")
+                ax.plot(bar_l_0, output["output_"+res[0]]["output_"+res[0]+"_"+press[1]][res[0]+"_"+tension[j]+"_"+finance[h]+"_"+str(row+1)+"_"+str(col+1)]["up. bound"][0:15], color=colours[1], linewidth=1, linestyle=(0, (5, 1)), alpha=0.6, label="84% credible set")
+                ax.fill_between(horizon, np.asarray(output["output_"+res[0]]["output_"+res[0]+"_"+press[1]][res[0]+"_"+tension[j]+"_"+finance[h]+"_"+str(row+1)+"_"+str(col+1)]["lw. bound"][0:15], dtype=float), np.asarray(output["output_"+res[0]]["output_"+res[0]+"_"+press[1]][res[0]+"_"+tension[j]+"_"+finance[h]+"_"+str(row+1)+"_"+str(col+1)]["up. bound"][0:15], dtype=float), color=colours[1], alpha=0.2)
+                ax.plot(bar_l_0, output["output_"+res[0]]["output_"+res[0]+"_"+press[2]][res[0]+"_"+tension[j]+"_"+finance[h]+"_"+str(row+1)+"_"+str(col+1)]["median"][0:15], color=colours[2], linewidth=2, alpha=0.8, label="median")
+                ax.plot(bar_l_0, output["output_"+res[0]]["output_"+res[0]+"_"+press[2]][res[0]+"_"+tension[j]+"_"+finance[h]+"_"+str(row+1)+"_"+str(col+1)]["lw. bound"][0:15], color=colours[2], linewidth=1, linestyle=(0, (5, 1)), alpha=0.6, label="16% credible set")
+                ax.plot(bar_l_0, output["output_"+res[0]]["output_"+res[0]+"_"+press[2]][res[0]+"_"+tension[j]+"_"+finance[h]+"_"+str(row+1)+"_"+str(col+1)]["up. bound"][0:15], color=colours[2], linewidth=1, linestyle=(0, (5, 1)), alpha=0.6, label="84% credible set")
+                ax.fill_between(horizon, np.asarray(output["output_"+res[0]]["output_"+res[0]+"_"+press[2]][res[0]+"_"+tension[j]+"_"+finance[h]+"_"+str(row+1)+"_"+str(col+1)]["lw. bound"][0:15], dtype=float), np.asarray(output["output_"+res[0]]["output_"+res[0]+"_"+press[2]][res[0]+"_"+tension[j]+"_"+finance[h]+"_"+str(row+1)+"_"+str(col+1)]["up. bound"][0:15], dtype=float), color=colours[2], alpha=0.2)                                  
                 ax.axhline(linewidth=2, color='k', alpha=0.6) ###
                 ax.tick_params(axis="both", labelsize=18) ###
-                #plt.xticks(tick_pos_0, tick_pos_0)
+                plt.xticks(tick_pos_0, tick_pos_0)
                 ax.patch.set_facecolor("white")
                 ax.grid(color="k", alpha=0.2, linewidth=0.5, linestyle="--")
                 #ax.set_ylabel("Response of "+label["label_"+res[0]]["label_"+res[0]+"_"+press[i]][res[0]+"_"+tension[j]+"_"+lag[k]+"_"+str(row+1)+"_"+str(col+1)][12:], fontsize=18)                      
-                ax.legend(loc="center left", fontsize=18, bbox_to_anchor=(1, 0.7), frameon=False)
+                #ax.legend(loc="center left", fontsize=18, bbox_to_anchor=(1, 0.7), frameon=False)
                 #ax.set_xlabel("horizon")
                 #ax.set_ylabel("IRF")
-                ax.set_title(res[0]+": "+label["label_"+res[0]]["label_"+res[0]+"_"+press[0]][res[0]+"_"+tension[j]+"_"+finance[h]+"_"+str(row+1)+"_"+str(col+1)], fontsize=20)
+                #ax.set_title(res[0]+": "+label["label_"+res[0]]["label_"+res[0]+"_"+press[0]][res[0]+"_"+tension[j]+"_"+finance[h]+"_"+str(row+1)+"_"+str(col+1)], fontsize=20)
                 fig.savefig(os.path.join(OUTPUTS["OUTPUTS_"+country[0]+"_"+press[0]], res[0]+"_"+country[0]+"_"+press[0]+"_"+tension[j]+"_"+finance[h]+"_"+str(row+1)+"_"+str(col+1)+".png"), dpi=200, bbox_inches="tight")
                 # fig.savefig(os.path.join(OUTPUTS["OUTPUTS_"+country[0]+"_"+press[i]], res[0]+"_"+country[0]+"_"+tension[j]+"_"+press[i]+"_"+str(row+1)+"_"+str(col+1)+".pdf"), dpi=200, bbox_inches="tight")                        
                         

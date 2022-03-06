@@ -1,4 +1,4 @@
-# BEAR-charts
+# BEAR-utils
 This is a repo with python routines to create charts in the context of **VAR analysis** from the [BEAR](https://github.com/european-central-bank/BEAR-toolbox/) toolbox.
 
 You will be able to create charts on:

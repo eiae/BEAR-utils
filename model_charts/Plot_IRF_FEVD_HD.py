@@ -6,7 +6,7 @@
 @description:
   1. Import data after model estimation (BEAR results)
   2. Reframe data to have coherent structure
-  3. Generate plottings and save in suitable format for publication
+  3. Generate charts and save in publication format
 """
 
 # %% Preamble
@@ -22,13 +22,12 @@ from matplotlib import cm
 
 # Define placeholders
 # =============================================================================
-
 v = 3  # number of variables
 h = 40 + 2  # h horizon +2
 c = 4  # time/lw.bound/median/up.bound
 
 vv = v + 2  # extra initial condition and constant
-cv = 2 # contrib./value
+cv = 2  # contrib./value
 s = 80  # full sample
 p = 4  # p number of lags
 t = s - p + 1  # t estimation sample +1
@@ -37,8 +36,8 @@ res = ["IRF", "FEVD", "HD"]
 res_bear = ["IRF", "FEVD", "hist decomp"]
 cc = ["BR", "MX"]
 country_long = ["Brazil", "Mexico"]
-colors = ["g", "b"]#, "k", "m", "c", "r", "y", "k"]
-palettes = ["YlGn", "PuBu"]#, "bone_r", "RdPu", "BrBG", "YlOrRd"]
+colors = ["g", "b"]  #, "k", "m", "c", "r", "y", "k"]
+palettes = ["YlGn", "PuBu"]  #, "bone_r", "RdPu", "BrBG", "YlOrRd"]
 
 xls = {}
 data = {}
@@ -69,13 +68,13 @@ for i in cc:
 # =============================================================================
 for i in cc:
     os.chdir(DATA[i])
-    xls[i] = pd.ExcelFile("results_BVAR_"+i+".xlsx")  
-    
+    xls[i] = pd.ExcelFile("results_BVAR_"+i+".xlsx")
+
     for j, k in zip(res, res_bear):
         data[j][i] = pd.read_excel(xls[i], k, index_col=0, header=0)
         data[j][i].dropna(axis=0, how="all", inplace=True)
         data[j][i].dropna(axis=1, how="all", inplace=True)
-        
+
         if j == "HD":
             for row in range(v):
                 for col in range(vv):
@@ -87,24 +86,29 @@ for i in cc:
                     if pd.isna(data[j][i].iloc[h*row+1, c*col]):
                         data[j][i].iloc[h*row+1, c*col] = data[j][i].iloc[h*row, c*col]
                         data[j][i].iloc[h*row, c*col] = np.nan
-        data[j][i].dropna(axis=0, how="all", inplace=True)             
-        
+        data[j][i].dropna(axis=0, how="all", inplace=True)
+
         if j == "HD":
             for row in range(v):
                 for col in range(vv):
-                    output[j][i][j+"_"+str(row+1)+"_"+str(col+1)] = pd.DataFrame(data=data[j][i].iloc[row*t+1:t*(row+1), col*cv+1:cv*(col+1)].values, 
-                                                                                  index=data[j][i].iloc[row*t+1:t*(row+1), 0].values, 
-                                                                                  columns=data[j][i].iloc[0, col*cv+1:cv*(col+1)].values)
-                    label[j][i][j+"_"+str(row+1)+"_"+str(col+1)] = data[j][i].iloc[t*row, cv*col]    
+                    df =  pd.DataFrame(data=data[j][i].iloc[row*t+1:t*(row+1), col*cv+1:cv*(col+1)].values,
+                                       index=data[j][i].iloc[row*t+1:t*(row+1), 0].values,
+                                       columns=data[j][i].iloc[0, col*cv+1:cv*(col+1)].values)
+                    lbl = data[j][i].iloc[t*row, cv*col]
+                    output[j][i][j+"_"+str(row+1)+"_"+str(col+1)] = df
+                    label[j][i][j+"_"+str(row+1)+"_"+str(col+1)] = lbl
         else:
             for row in range(v):
                 for col in range(v):
-                    output[j][i][j+"_"+str(row+1)+"_"+str(col+1)] = pd.DataFrame(data=data[j][i].iloc[row*(h-1)+1:(h-1)*(row+1), col*c+1:c*(col+1)].values,
-                                                                                index=data[j][i].iloc[row*(h-1)+1:(h-1)*(row+1), 0].values,
-                                                                                columns=data[j][i].iloc[0, col*c+1:c*(col+1)].values)
-                    label[j][i][j+"_"+str(row+1)+"_"+str(col+1)] = data[j][i].iloc[(h-1)*row, c*col]
+                    df = pd.DataFrame(data=data[j][i].iloc[row*(h-1)+1:(h-1)*(row+1), col*c+1:c*(col+1)].values,
+                                      index=data[j][i].iloc[row*(h-1)+1:(h-1)*(row+1), 0].values,
+                                      columns=data[j][i].iloc[0, col*c+1:c*(col+1)].values)
+                    lbl = data[j][i].iloc[(h-1)*row, c*col]
+                    output[j][i][j+"_"+str(row+1)+"_"+str(col+1)] = df
+                    label[j][i][j+"_"+str(row+1)+"_"+str(col+1)] = lbl 
 
-# %% Charts
+
+# %% IRF
 
 # Plot IRF
 # =============================================================================
@@ -137,6 +141,69 @@ for i, k in zip(cc, colors):
             #ax.legend(loc="center left", fontsize=18, bbox_to_anchor=(1, 0.7), frameon=False)
             
             fig.savefig(os.path.join(OUTPUTS[i], "IRF_"+i+"_"+str(row+1)+"_"+str(col+1)+".png"), dpi=200, bbox_inches="tight")
+
+
+# %% FEVD
+
+# Plot FEVD
+# =============================================================================
+FEVD_median = {}
+FEVD_total = {}
+FEVD_rel_median = {}
+FEVD_plot = {}
+
+alphas = []
+col_pal = {}
+
+bar_width = 0.8
+delim = 32  # adapt values to isolate correct string from label
+
+for i, k in zip(cc, palettes):
+    col_pal[i] = cm.get_cmap(k, v)
+    for row in range(v):
+        alphas.append(1.0-(1/v*row))  # alphas equal to number of variables
+        FEVD_median[str(row+1)] = []
+        for col in range(v):
+            median = output["FEVD"][i]["FEVD_"+str(row+1)+"_"+str(col+1)]["median"]
+            lw = output["FEVD"][i]["FEVD_"+str(row+1)+"_"+str(col+1)]["lw. bound"]
+            up = output["FEVD"][i]["FEVD_"+str(row+1)+"_"+str(col+1)]["up. bound"]
+            bar1 = [i+1 for i in range(len(median))]
+            tick1 = [i for i in bar1]
+            FEVD_median[str(row+1)].append(median)
+        FEVD_total[str(row+1)] = list(map(sum, zip(*FEVD_median[str(row+1)])))
+        for col in range(v):
+            FEVD_rel_median[str(row+1)+"_"+str(col+1)] = (FEVD_median[str(row+1)][col] / FEVD_total[str(row+1)])*100
+        FEVD_plot[str(row+1)] = np.zeros([v, h-2])
+        for col in range(v):
+            FEVD_plot[str(row+1)][col, :] = FEVD_rel_median[str(row+1)+"_"+str(col+1)].values
+       
+        fig, ax = plt.subplots(1, figsize=(15, 7))
+        for col in range(v):
+            lbl = label["FEVD"][i]["FEVD_"+str(row+1)+"_"+str(col+1)]
+            ax.bar(bar1, FEVD_plot[str(row+1)][col],
+                   bottom=np.sum(FEVD_plot[str(row+1)][:col], axis=0),
+                   width=bar_width, label=lbl[delim:], color=col_pal[i](col),  # delim
+                   edgecolor="k", linewidth=0.3) 
+
+        ax.tick_params(axis="both", labelsize=18)
+        plt.xticks(tick1, bar1)
+        plt.xlim([min(tick1)-bar_width, max(tick1)+bar_width])
+        plt.ylim(0, 100)
+        ax.patch.set_facecolor("white")
+        
+        ax.set_title("FEVD: " + lbl[8:-delim], fontsize=20)  # delim
+        ax.set_ylabel("contribution in %", fontsize=18)
+        # ax.set_xlabel("horizon")
+        ax.legend(loc="center left", fontsize="x-large", bbox_to_anchor=(1, 0.6), frameon=False)
+
+        fig.savefig(os.path.join(OUTPUTS[i], "FEVD_"+i+"_"+str(row+1)+".png"), dpi=200, bbox_inches="tight")
+
+
+# %% HD
+
+# Plot HD
+# =============================================================================
+
 
 #-----------------------------------------------------------------------------
 # appendix

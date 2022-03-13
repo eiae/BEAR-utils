@@ -33,21 +33,12 @@ s = 80  # full sample
 p = 4  # p number of lags
 t = s - p + 1  # t estimation sample +1
 
-
-
-
-
-
 res = ["IRF", "FEVD", "HD"]
 res_bear = ["IRF", "FEVD", "hist decomp"]
 cc = ["BR", "MX"]
 country_long = ["Brazil", "Mexico"]
-colours = ["g", "b", "k", "m", "c", "r", "y", "k"]
-palettes = ["YlGn", "PuBu", "bone_r", "RdPu", "BrBG", "YlOrRd"]
-
-# lag = ["lag1", "lag2", "lag3", "lag4", "lag5", "lag6", "lag7", "lag8"]
-# tension = ["lassi", "lapsi", "epu"]
-# press = ["loc", "esp", "int"]
+colors = ["g", "b"]#, "k", "m", "c", "r", "y", "k"]
+palettes = ["YlGn", "PuBu"]#, "bone_r", "RdPu", "BrBG", "YlOrRd"]
 
 xls = {}
 data = {}
@@ -60,10 +51,6 @@ for i in res:
     for j in cc:
         output[i][j] = {}
         label[i][j] = {}
-        
-    # for i in press:
-    #     output["output_"+k]["output_"+k+"_"+i] = {}
-    #     label["label_"+k]["label_"+k+"_"+i] = {}
 
 # Define paths
 # =============================================================================
@@ -76,7 +63,9 @@ for i in cc:
     OUTPUTS[i] = os.path.join(WDPATH, "example", "bvar_"+i, "charts")
 
 
-# Import data + plot + save
+# %% Data
+
+# Import and wrangle data
 # =============================================================================
 for i in cc:
     os.chdir(DATA[i])
@@ -114,40 +103,40 @@ for i in cc:
                                                                                 index=data[j][i].iloc[row*(h-1)+1:(h-1)*(row+1), 0].values,
                                                                                 columns=data[j][i].iloc[0, col*c+1:c*(col+1)].values)
                     label[j][i][j+"_"+str(row+1)+"_"+str(col+1)] = data[j][i].iloc[(h-1)*row, c*col]
-                            
-for i in range(len(press)):  
-    for j in range(len(tension)):
-        for row in range(v):
-            for col in range(v):
-                # IRF
-                horizon = np.arange(1, 41, dtype=float)
-                bar_l_0 = [q+1 for q in range(0,40)]
-                # tick_pos_0 = [q+1 for q in range(0,40)]
-                fig, ax = plt.subplots(1, figsize=(15, 7))
-                ax.plot(bar_l_0, output["output_"+res[0]]["output_"+res[0]+"_"+press[i]][res[0]+"_"+tension[j]+"_"+lag[0]+"_"+str(row+1)+"_"+str(col+1)]["median"], color=colours[0], linewidth=2, alpha=0.8, label="p=1")
-                ax.plot(bar_l_0, output["output_"+res[0]]["output_"+res[0]+"_"+press[i]][res[0]+"_"+tension[j]+"_"+lag[1]+"_"+str(row+1)+"_"+str(col+1)]["median"], color=colours[1], linewidth=2, alpha=0.8, label="p=2")
-                ax.plot(bar_l_0, output["output_"+res[0]]["output_"+res[0]+"_"+press[i]][res[0]+"_"+tension[j]+"_"+lag[2]+"_"+str(row+1)+"_"+str(col+1)]["median"], color=colours[2], linewidth=2, alpha=0.8, label="p=3")
-                ax.plot(bar_l_0, output["output_"+res[0]]["output_"+res[0]+"_"+press[i]][res[0]+"_"+tension[j]+"_"+lag[3]+"_"+str(row+1)+"_"+str(col+1)]["median"], color=colours[3], linewidth=2, alpha=0.8, label="p=4")
-                ax.plot(bar_l_0, output["output_"+res[0]]["output_"+res[0]+"_"+press[i]][res[0]+"_"+tension[j]+"_"+lag[4]+"_"+str(row+1)+"_"+str(col+1)]["median"], color=colours[4], linewidth=2, alpha=0.8, label="p=5")
-                ax.plot(bar_l_0, output["output_"+res[0]]["output_"+res[0]+"_"+press[i]][res[0]+"_"+tension[j]+"_"+lag[5]+"_"+str(row+1)+"_"+str(col+1)]["median"], color=colours[5], linewidth=2, alpha=0.8, label="p=6")
-                ax.plot(bar_l_0, output["output_"+res[0]]["output_"+res[0]+"_"+press[i]][res[0]+"_"+tension[j]+"_"+lag[6]+"_"+str(row+1)+"_"+str(col+1)]["median"], color=colours[6], linewidth=2, alpha=0.8, label="p=7")
-                ax.plot(bar_l_0, output["output_"+res[0]]["output_"+res[0]+"_"+press[i]][res[0]+"_"+tension[j]+"_"+lag[7]+"_"+str(row+1)+"_"+str(col+1)]["median"], color=colours[7], linewidth=2, alpha=0.4, label="p=8")
-                # ax.plot(bar_l_0, output["output_"+res[0]]["output_"+res[0]+"_"+str(country[i])][res[0]+"_"+str(country[i])+"_"+str(row+1)+"_"+str(col+1)]["lw. bound"], color=colours[i], linewidth=1, linestyle=(0, (5, 1)), alpha=0.6, label="16% credible set")
-                # ax.plot(bar_l_0, output["output_"+res[0]]["output_"+res[0]+"_"+str(country[i])][res[0]+"_"+str(country[i])+"_"+str(row+1)+"_"+str(col+1)]["up. bound"], color=colours[i], linewidth=1, linestyle=(0, (5, 1)), alpha=0.6, label="84% credible set")
-                # ax.fill_between(horizon, np.asarray(output["output_"+res[0]]["output_"+res[0]+"_"+str(country[i])][res[0]+"_"+str(country[i])+"_"+str(row+1)+"_"+str(col+1)]["lw. bound"], dtype=float), np.asarray(output["output_"+res[0]]["output_"+res[0]+"_"+str(country[i])][res[0]+"_"+str(country[i])+"_"+str(row+1)+"_"+str(col+1)]["up. bound"], dtype=float), color=colours[i], alpha=0.2)
-                ax.axhline(linewidth=2, color='k', alpha=0.6) ###
-                ax.tick_params(axis="both", labelsize=18) ###
-                #plt.xticks(tick_pos_0, tick_pos_0)
-                ax.patch.set_facecolor("white")
-                ax.grid(color="k", alpha=0.2, linewidth=0.5, linestyle="--")
-                #ax.set_ylabel("Response of "+label["label_"+res[0]]["label_"+res[0]+"_"+press[i]][res[0]+"_"+tension[j]+"_"+lag[k]+"_"+str(row+1)+"_"+str(col+1)][12:], fontsize=18)                      
-                ax.legend(loc="center left", fontsize=18, bbox_to_anchor=(1, 0.7), frameon=False)
-                #ax.set_xlabel("horizon")
-                #ax.set_ylabel("IRF")
-                ax.set_title(res[0]+": "+label["label_"+res[0]]["label_"+res[0]+"_"+press[i]][res[0]+"_"+tension[j]+"_"+lag[0]+"_"+str(row+1)+"_"+str(col+1)], fontsize=20)
-                fig.savefig(os.path.join(OUTPUTS["OUTPUTS_"+country[0]+"_"+press[i]], res[0]+"_"+country[0]+"_"+tension[j]+"_"+press[i]+"_"+str(row+1)+"_"+str(col+1)+".png"), dpi=200, bbox_inches="tight")
-                # fig.savefig(os.path.join(OUTPUTS["OUTPUTS_"+country[0]+"_"+press[i]], res[0]+"_"+country[0]+"_"+tension[j]+"_"+press[i]+"_"+str(row+1)+"_"+str(col+1)+".pdf"), dpi=200, bbox_inches="tight")
 
+# %% Charts
+
+# Plot IRF
+# =============================================================================
+for i, k in zip(cc, colors):
+    for row in range(v):
+        for col in range(v):
+            horizon = np.arange(1, h-1, dtype=float)
+            bar0 = [q+1 for q in range(0,h-2)]
+            #tick0 = [q+1 for q in range(0,h-2)]
+            median = output["IRF"][i]["IRF_"+str(row+1)+"_"+str(col+1)]["median"]
+            lw = output["IRF"][i]["IRF_"+str(row+1)+"_"+str(col+1)]["lw. bound"]
+            up = output["IRF"][i]["IRF_"+str(row+1)+"_"+str(col+1)]["up. bound"]
+            lbl = label["IRF"][i]["IRF_"+str(row+1)+"_"+str(col+1)]
+            
+            fig, ax = plt.subplots(1, figsize=(15, 7))
+            ax.plot(bar0, median, color=k, linewidth=2, alpha=0.8) #label="median"
+            ax.plot(bar0, lw, color=k, linewidth=1, linestyle=(0, (5, 1)), alpha=0.6) #label="16% credible set"
+            ax.plot(bar0, up, color=k, linewidth=1, linestyle=(0, (5, 1)), alpha=0.6) #label="84% credible set"
+            ax.fill_between(horizon, np.asarray(lw, dtype=float), np.asarray(up, dtype=float), color=k, alpha=0.2)
+            ax.axhline(linewidth=2, color='k', alpha=0.6) 
+            
+            ax.tick_params(axis="both", labelsize=18) 
+            #plt.xticks(tick0, tick0)
+            ax.patch.set_facecolor("white")
+            ax.grid(color="k", alpha=0.2, linewidth=0.5, linestyle="--")
+            
+            ax.set_title("IRF: "+lbl, fontsize=20)
+            #ax.set_xlabel("horizon")
+            #ax.set_ylabel("IRF")
+            #ax.legend(loc="center left", fontsize=18, bbox_to_anchor=(1, 0.7), frameon=False)
+            
+            fig.savefig(os.path.join(OUTPUTS[i], "IRF_"+i+"_"+str(row+1)+"_"+str(col+1)+".png"), dpi=200, bbox_inches="tight")
 
 #-----------------------------------------------------------------------------
 # appendix

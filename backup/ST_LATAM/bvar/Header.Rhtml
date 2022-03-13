@@ -1,0 +1,65 @@
+<html>
+
+<head>
+<title>Sample header</title>
+ <link rel = "stylesheet"
+   type = "text/css"
+   href = "styles.css" />
+
+
+<!-- Adds the back to top link to your website -->
+<a href="#" id="back-to-top" class="back-to-top" style="display: inline;">Top</a>
+
+<!-- Fades in the button when you scroll down -->
+<script>
+  var link = document.getElementById("back-to-top");
+  var amountScrolled = 250;
+
+  window.addEventListener('scroll', function(e) {
+      if ( window.pageYOffset > amountScrolled ) {
+          link.classList.add('show');
+      } else {
+          link.className = 'back-to-top';
+      }
+  });
+
+<!-- Scrolls to Top -->
+  link.addEventListener('click', function(e) {
+      e.preventDefault();
+
+      var distance = 0 - window.pageYOffset;
+      var increments = distance/(500/16);
+      function animateScroll() {
+          window.scrollBy(0, increments);
+          if (window.pageYOffset <= document.body.offsetTop) {
+              clearInterval(runAnimation);
+          }
+      };
+      // Loop the animation function
+      var runAnimation = setInterval(animateScroll, 16);
+  });
+</script>
+
+</head>
+
+<body>
+  <header>
+    <div class = "head-container">
+
+
+      <nav>
+        <ul>
+        <li><a href="https://www.bde.es/bde/en/secciones/informes/analisis-economico-e-investigacion/documentos-de-trabajo/"> EPU proximity press </a></li>
+        </ul>
+
+
+      </nav>
+
+    </div>
+
+
+  </header>
+
+
+</body>
+</html>

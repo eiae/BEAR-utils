@@ -28,10 +28,10 @@ h = 40 + 2  # h horizon +2
 c = 4  # time/lw.bound/median/up.bound
 
 vv = v + 2  # extra initial condition and constant
-cc = 2 # contrib./value
+cv = 2 # contrib./value
 s = 80  # full sample
 p = 4  # p number of lags
-t = s - p + 2  # t estimation sample +2
+t = s - p + 1  # t estimation sample +1
 
 
 
@@ -57,7 +57,10 @@ for i in res:
     data[i] = {}
     output[i] = {}
     label[i] = {}
-    
+    for j in cc:
+        output[i][j] = {}
+        label[i][j] = {}
+        
     # for i in press:
     #     output["output_"+k]["output_"+k+"_"+i] = {}
     #     label["label_"+k]["label_"+k+"_"+i] = {}
@@ -87,12 +90,8 @@ for i in cc:
         if j == "HD":
             for row in range(v):
                 for col in range(vv):
-                    if pd.isna(data[j][i].iloc[t*row, cc*col+1]):
-                        data[j][i].iloc[t*row, cc*col+1] = data[j][i].iloc[t*row, cc*col]
-                        data[j][i].iloc[t*row, cc*col] = np.nan
-                    # if pd.isna(data[j][i].iloc[t*row+1, cc*col]):
-                    #     data[j][i].iloc[t*row+1, cc*col] = data[j][i].iloc[t*row, cc*col]
-                    #     data[j][i].iloc[t*row, cc*col] = np.nan
+                    if pd.isna(data[j][i].iloc[t*row, cv*col+1]):
+                        data[j][i].iloc[t*row, cv*col+1] = "median"
         else:
             for row in range(v):
                 for col in range(v):
@@ -101,21 +100,21 @@ for i in cc:
                         data[j][i].iloc[h*row, c*col] = np.nan
         data[j][i].dropna(axis=0, how="all", inplace=True)             
         
-        for row in range(v):
-            # for col_2 in range(v_2):
-            for col in range(v):
-                    # save outputs individually considering different types of results
-                    # if data["data_"+k] == data["data_"+res[2]]:
-                    #     output["output_"+k]["output_"+k+"_"+str(country[i])][k+"_"+str(country[i])+"_"+str(row+1)+"_"+str(col_2+1)] = pd.DataFrame(data=data["data_"+k]["data_"+k+"_"+str(country[i])].iloc[row*(r_2-1)+1:(r_2-1)*(row+1), col_2*c+1:c*(col_2+1)].values,
-                    #                  index=data["data_"+k]["data_"+k+"_"+str(country[i])].iloc[row*(r_2-1)+1:(r_2-1)*(row+1), 0].values,
-                    #                  columns=data["data_"+k]["data_"+k+"_"+str(country[i])].iloc[0, (col_2*c+1):c*(col_2+1)].values)
-                    #     label["label_"+k]["label_"+k+"_"+str(country[i])][k+"_"+str(country[i])+"_"+str(row+1)+"_"+str(col_2+1)] = data["data_"+k]["data_"+k+"_"+str(country[i])].iloc[(r_2-1)*row, c*col_2]  
-                    # else:
-                output["output_"+j][i"_"+str(row+1)+"_"+str(col+1)] = pd.DataFrame(data=data["data_"+j][i].iloc[row*(r-1)+1:(r-1)*(row+1), col*c+1:c*(col+1)].values,
-                               index=data["data_"+j][i].iloc[row*(r-1)+1:(r-1)*(row+1), 0].values,
-                               columns=data["data_"+j][i].iloc[0, col*c+1:c*(col+1)].values)
-                label["label_"+j][j+"_"+str(row+1)+"_"+str(col+1)] = data["data_"+j][i].iloc[(r-1)*row, c*col]
-       
+        if j == "HD":
+            for row in range(v):
+                for col in range(vv):
+                    output[j][i][j+"_"+str(row+1)+"_"+str(col+1)] = pd.DataFrame(data=data[j][i].iloc[row*t+1:t*(row+1), col*cv+1:cv*(col+1)].values, 
+                                                                                  index=data[j][i].iloc[row*t+1:t*(row+1), 0].values, 
+                                                                                  columns=data[j][i].iloc[0, col*cv+1:cv*(col+1)].values)
+                    label[j][i][j+"_"+str(row+1)+"_"+str(col+1)] = data[j][i].iloc[t*row, cv*col]    
+        else:
+            for row in range(v):
+                for col in range(v):
+                    output[j][i][j+"_"+str(row+1)+"_"+str(col+1)] = pd.DataFrame(data=data[j][i].iloc[row*(h-1)+1:(h-1)*(row+1), col*c+1:c*(col+1)].values,
+                                                                                index=data[j][i].iloc[row*(h-1)+1:(h-1)*(row+1), 0].values,
+                                                                                columns=data[j][i].iloc[0, col*c+1:c*(col+1)].values)
+                    label[j][i][j+"_"+str(row+1)+"_"+str(col+1)] = data[j][i].iloc[(h-1)*row, c*col]
+                            
 for i in range(len(press)):  
     for j in range(len(tension)):
         for row in range(v):

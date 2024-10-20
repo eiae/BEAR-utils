@@ -1,11 +1,15 @@
 # BEAR-utils
-This repo is a collection of routines that allows you to create charts from **VAR models** using the [BEAR](https://github.com/european-central-bank/BEAR-toolbox/) toolbox.
 
-You will be able to create charts on:
+This repo is a collection of routines to automatize publication-ready charts from VAR models using the [BEAR toolbox](https://github.com/european-central-bank/BEAR-toolbox/).
 
-* Impulse response functions (IRF)
-* Forecast error variance decompositions (FEVD)
-* Historical decompositions (HD)
+### Structure:
+
+* `main.py`: main script to build charts from the BEAR VAR results:
+	* Impulse response functions (IRF)
+	* Forecast error variance decompositions (FEVD)
+	* Historical decompositions (HD)
+* `/functions`: subroutines to handle the VAR results data and automatize the charts creation.
+* `/example`: illustrative examples showcasing the use of the routines.
 
 ---
 
